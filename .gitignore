@@ -1,0 +1,6 @@
+
+.DS_Store
+.ipynb_checkpoints/010.Data_Cleaning-checkpoint.ipynb
+DATA/TEST_VALUES.csv
+DATA/TRAINING_LABELS.csv
+DATA/TRAINING_VALUES.csv
