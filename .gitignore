@@ -12,3 +12,5 @@ PKL/X_train.pkl
 PKL/y_test.pkl
 PKL/y_train.pkl
 .ipynb_checkpoints/030.Model_Evaluation-checkpoint.ipynb
+.ipynb_checkpoints/031.Model_Evaluation-2-checkpoint.ipynb
+*.pkl
