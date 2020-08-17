@@ -6,4 +6,5 @@ __pycache__
 *.pytest_cache
 TEST_VALUES.csv
 TRAINING_VALUES.csv
-TRAINING_LABLES.csv
+TRAINING_LABELS.csv
+clean_df.pkl
