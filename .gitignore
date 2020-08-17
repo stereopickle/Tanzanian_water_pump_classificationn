@@ -1,0 +1,9 @@
+
+.ipynb_checkpoints
+.DS_Store
+__pycache__
+*.db
+*.pytest_cache
+TEST_VALUES.csv
+TRAINING_VALUES.csv
+TRAINING_LABLES.csv
