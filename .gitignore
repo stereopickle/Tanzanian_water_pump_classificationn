@@ -14,3 +14,8 @@ PKL/y_train.pkl
 .ipynb_checkpoints/030.Model_Evaluation-checkpoint.ipynb
 .ipynb_checkpoints/031.Model_Evaluation-2-checkpoint.ipynb
 *.pkl
+MAP/tza_admbnda_adm3_20181019.CPG
+MAP/tza_admbnda_adm3_20181019.dbf
+MAP/tza_admbnda_adm3_20181019.prj
+MAP/tza_admbnda_adm3_20181019.shp
+MAP/tza_admbnda_adm3_20181019.shx
