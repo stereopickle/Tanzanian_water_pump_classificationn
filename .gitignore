@@ -19,3 +19,7 @@ MAP/tza_admbnda_adm3_20181019.dbf
 MAP/tza_admbnda_adm3_20181019.prj
 MAP/tza_admbnda_adm3_20181019.shp
 MAP/tza_admbnda_adm3_20181019.shx
+CSV_temp/X_test.csv
+CSV_temp/X_train.csv
+CSV_temp/y_test.csv
+CSV_temp/y_train.csv
