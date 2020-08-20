@@ -49,7 +49,11 @@ Model Evaluation
 
 Limiting Features
 
+The features of most importance to our study are. 
+
 Conclusion
+When we use these features to predict we were able to get up to a balanced accuracy score of: 
+
 
 
 
