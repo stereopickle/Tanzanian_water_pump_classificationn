@@ -39,15 +39,35 @@ While looking though the data we were able to use visualizations to help support
 
 Model Evaluation 
 
--Logistic Regression
--KNN
--Decision Trees
--Random Forest
--Optuna
--GXBoost
--Voting Classifier
+Simple KNN:
+F1:  0.7261865744868643
+Accuracy:  0.6755554071987807
 
-Limiting Features
+KNN Optuna (Partial):
+F1:  0.756628580044674
+Accuracy:  0.6419787200751056
+
+Simple Decision Tree:
+F1:  0.758099379788984
+Accuracy:  0.6813149596944778
+
+Simple Random Forest:
+F1:  0.636204439523446
+Accuracy:  0.5739914034203191
+
+ Random Forest Optuna (Partial):
+F1:  0.732407520823967
+Accuracy:  0.690361197169631
+
+Random Forest Optuna 2 (Partial):
+F1:  0.732407520823967
+Accuracy:  0.690361197169631
+
+Voting Classifier:
+F1:  0.7768854652814526
+Accuracy:  0.711696480003709
+
+
 
 The features of most importance to our study are. 
 
