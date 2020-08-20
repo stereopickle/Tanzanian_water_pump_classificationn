@@ -31,7 +31,9 @@ Due to the input being extremely messy for both installers and funcers we untili
 
 Exploratory Data Analysis
 
-After cleaning up the missing values and typos, we proceeded to a closer analysis of the features as with 40 original columns, we needed to make sure there weren't features that were too similar. For many colums like waterpoint_type, waterpoint_type_group, and waterpoint_type_class the features were almost exact with some additional breakdowns included. After looking at heatmaps between them, we were better able to decide which features were most informative for the prediction.
+After cleaning up the missing values and typos, we proceeded to the data analysis. Starting with our target class which was heavily class imbalanced. We will be predicting a multi-class problem, so making sure the model is not biased in our models now will save a lot of time an money in the real world and more accurately help us predict the minority. 
+
+ Once we the target was assessed, the proceeded to analyzing our features as with 39 original columns, we needed to make sure there weren't features that were too similar, cutting down on uncessesary ones also helped to make our models when taken into the computational load. For many colums like waterpoint_type, waterpoint_type_group, and waterpoint_type_class the features were almost exact with some additional breakdowns included. After looking at heatmaps between them, we were better able to decide which features were most informative for the prediction.
 
 The location data provided led us to engineer features that included distances to basins and local government authorities. We also paired down some location data such as wards and subvillages to try to filter out some noise. 
 
@@ -40,32 +42,28 @@ While looking though the data we were able to use visualizations to help support
 Model Evaluation 
 
 Simple KNN:
-F1:  0.7261865744868643
-Accuracy:  0.6755554071987807
+F1:  0.7153462244464512
+Accuracy:  0.6557547629571218
 
 KNN Optuna (Partial):
-F1:  0.756628580044674
-Accuracy:  0.6419787200751056
+F1:  0.7416161415456416
+Accuracy:  0.6257424679552516
 
 Simple Decision Tree:
-F1:  0.758099379788984
-Accuracy:  0.6813149596944778
+F1:  0.7483997194651338
+Accuracy:  0.6655886434850676
 
 Simple Random Forest:
-F1:  0.636204439523446
-Accuracy:  0.5739914034203191
+F1:  0.6509321696322655
+Accuracy:  0.5659164915441665
 
- Random Forest Optuna (Partial):
-F1:  0.732407520823967
-Accuracy:  0.690361197169631
+Random Forest Optuna (Partial):
+
 
 Random Forest Optuna 2 (Partial):
-F1:  0.732407520823967
-Accuracy:  0.690361197169631
+
 
 Voting Classifier:
-F1:  0.7768854652814526
-Accuracy:  0.711696480003709
 
 
 
