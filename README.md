@@ -76,20 +76,20 @@ Payment type seems to be a direct predictor of the maintenance of these water po
 <img src="./PNG/extraction_type.png">
 Most pumps utilize gravity pump or old fashioned hand pump. We can see that electric water pumps like motor pump and submersible pump are not well maintained and more likely to fail. The few wind-powered extraction types seemed to be not working as well. 
 
-### Other Predictors  
-['funder'] - who funded the project  
-['installer'] - who installed the project  
-['quantity'] - the output level of the waterpoint  
-[ 'water_quality'] - quality of water  
-['payment_type'] - how payment is made (per bucket, monthly, yearly)  
-['source'] - water source  
-['waterpoint_type'] - how the water is pumped by then end user  
-['extraction_type'] - type of mechanism the water is pumped with  
-['management'] - team responsible for the maintanence  
-['public_meeting'] - "true/false" was all the explaination given  
-['permit'] - if the waterpoint has a permit  
-['scheme_management'] - operator of the waterpoint  
-['num_private'] 
+### Other Predictors included ...
+amount_tsh - total static head  
+funder - who funded the project  
+installer - who installed the project  
+quantity - the output level of the waterpoint  
+water_quality - quality of water  
+payment_type - how payment is made (per bucket, monthly, yearly)  
+source - water source  
+waterpoint_type - how the water is pumped by then end user  
+management - team responsible for the maintanence  
+public_meeting - "true/false" was all the explaination given  
+permit - if the waterpoint has a permit  
+scheme_managemen - operator of the waterpoint  
+num_private 
 
 
 ## Model Evaluation
@@ -114,13 +114,27 @@ We tested a number of models including ...
 
 Hyperparameter tuning was done using both GridSearchCV and Optuna.  
 
+### Baseline Model
+Our stratified dummy predictor yielded balanced accuracy of .336 and the minority recall score of 0.08. 
 
-Final Model  
+### Model Performance
+Here we outline the best performing score of each algorithm.  
+Model | Weightd F1 | Balanced Accuracy | Minority Recall  
+Baseline | 0.444 | 0.336  | 0.08
+Logistic Regression (L1) | 0.68 | 0.695  | 0.71
+Decision Tree | 0.728 | 0.642  | 0.45
+kNN | 0.753 | 0.631  | 0.32
+Random Forest | 0.731 | 0.694  | 0.66
+XGBoost | 0.779 | 0.687  | 0.47
+Voting Classifier | xx |xx |xx
+
+### Final Model Performance
 
 
-Conclusion
 
-By being able to predict which wells need repair, this would significantly cut down on resources being spent on waterpoint checks where they are less needed and concentrate the focus to the problem areas giving way to quicker improvements and by extension additional availability of this critical resource (Driven Data, Taarifa, Tanzania Ministry of Water).
+## Conclusion
+
+Successful prediction of water point condition would allow appropriate allocation of resources in maintenance of water points in Tanzania. This will be an important step in building a sustainable infrastructure that will better many lives in Tanzania.
 
 
 
