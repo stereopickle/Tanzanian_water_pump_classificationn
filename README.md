@@ -166,8 +166,8 @@ Top Three Recall Scores
 
 	Logistic Reg 	0.72
 		L1/Lasso and Solver Saga
-	Logistic Reg   0.71
-		Simple using L1/Lasso
+	Voting Class   0.72
+		on Logistic Reg
 	Logistic Reg	0.71 
 		Solver Lbfgs 
 
