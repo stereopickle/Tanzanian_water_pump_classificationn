@@ -148,7 +148,28 @@ Most pumps utilize gravity pump or old fashioned hand pump. We can see that elec
 
 Model Evaluations 
 
+Top Three F1 Scores
 
+	XGBoost using SMOTE	  0.779
+	XGBoost  	0.802
+	Voting Classifier   0.77
+		(using all models w/ Lasso and soft voting)
+
+Top Three Balanced Accuracy Scores
+
+	Voting Classifier SMOTE 2	0.708
+		(LogReg, KNN, RFC, and DTC)
+	LogRegLasso	  0.695
+	Random Forest with Optuna	0.694
+
+Top Three Recall Scores
+
+	Logistic Reg 	0.72
+		L1/Lasso and Solver Saga
+	Logistic Reg   0.71
+		Simple using L1/Lasso
+	Logistic Reg	0.71 
+		Solver Lbfgs 
 
 
 Final Model  
