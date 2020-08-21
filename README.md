@@ -1,9 +1,14 @@
 # Tanzanian_water_pump_classificationn
 by Eunjoo Byeon and Dolci Sanders
 
+
+
 ### Classification of Waterpoint Functionality 
 
 This repository contains a process for cleaning and exploring the Taarifa and Tanzanian Ministry of Water data provided as part of a DrivenData.Org competition. Our goal of this project is to predict the functionality of water points around the country in order to improve maintenance operations and increase the accessibility of clean water in Tanzania. 
+
+
+
 
 ## The Problem
 
@@ -14,7 +19,6 @@ Tanzania National Website states that water-borne illesses like cholera and mala
 Tanzania has often been thought of as a developing country, but it has major potential for aggricultural growth, such as coffee and avocados, that would lead to economic growth in the country where there is an absence of a middle class and wide spread poverty. But agriculture depends on year round water supplies. Water accessibility is critical to the growth of not only the country, but also civil rights by extension. The gathering of water generally falls on the women in the communities and by extension their children, particuarly the girls. These families travel kilometers away for each bucket of water often pulling their girls out of school to help transport this essential resource. 
 
 While Tanzania now has many water points, 60,400 to be exact, the battle is far from over as 22,824 are non functional and another 4,317 are partially functional and in need of repairs. 
-
 
 
 
@@ -39,6 +43,7 @@ While Tanzania now has many water points, 60,400 to be exact, the battle is far 
 
 #### 050_Visual_Analysis.ipynb
 	- Overview of the visual analysis of the data. 
+
 
 
 
@@ -117,7 +122,7 @@ Given these features are related, we paired with latitiude and longitude coordin
 The data shows that the majority of villages have less than 10 accessible water pumps and nearly half of those waterpoints are non functional.    
 
 <img src="./PNG/Payment.png">
-Payment type seems to be a direct predictor of the maintenance of these water points as we can expect. Steadier payment plan is, it is likely to be functioning. This brings a question of how funding for Tanzania water project is actually being utilized. 
+Payment type seems to be a direct predictor of the maintenance of these water points as we can expect. Steadier payment plans are more likely to keep up with minor repairs and therefore likely to be functioning more often than not. This may also bring into question of how funding for Tanzania water project is actually being utilized. 
 
 ['funder'] - who funded the project
 ['installer'] - who installed the project
@@ -145,12 +150,31 @@ Model Evaluations
 
 
 
+
 Final Model  
+
+
+
+
+Recommendations for future waterpoints: 
+
+In analyzing this data, there are improvements that can me made that would likely have a positive impact on the issues surrounding water availability.  
+
+	Failing pumps are costly and take critical resources away from the locals that depend on them. 
+		- Further research into types and longevity of waterpumps that could replace the heavily failing motor and gravity pumps currently used would be a good start.
+
+	The world bank study showed that village managed waterpoints are 20-40% more likely to fail between years 1 and 20. 
+		- Education and technical training for local communities would will allow those in the 		communities to maintain waterpoints and better manage water pumps. 
+
+	Payment is a large issues especially when the average monthly salary in Tanzania is $50. 
+		- Financial support systems from local government areas or districs in addition to payment arrangements in place is crucial to driving a reliable water system. 
 
 
 Conclusion
 
 By being able to predict which wells need repair, this would significantly cut down on resources being spent on waterpoint checks where they are less needed and concentrate the focus to the problem areas giving way to quicker improvements and by extension additional availability of this critical resource (Driven Data, Taarifa, Tanzania Ministry of Water).
+
+
 
 
 
