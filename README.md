@@ -127,11 +127,18 @@ Here we outline the best performing score of each algorithm.
 | kNN | 0.753 | 0.631  | 0.32 |
 | Random Forest | 0.731 | 0.694  | 0.66 |
 | XGBoost | 0.779 | 0.687  | 0.47 |
-| Voting Classifier | xx |xx |xx |
+| Voting Classifier | 0.758 | 0.708 | 0.64 |
 
-### Final Model Performance
+XGBoost and KNN models did the best on weighted f1 score, and overall accuracy, but they missed many of the minority class.
+Random Forest model fit our goal best with high prediction of all classes throughout including the minority class, with slight tendency to over-predict the minority class. Voting classifier model also performed well, but we chose random forest model because its sensitivity for minority classes were the highest. 
 
+### Final Model Performance (On test data)
+| Model | Weightd F1 | Balanced Accuracy | Minority Recall |
+| --- | --- | --- | --- |
+| Baseline | 0.372 | 0.322  | 0.331 |
+| Finaml Model | 0.725 | 0.672  | 0.63 |
 
+Our final model nearly doubled in weighted F1 and balanced accuracy score from a stratified baseline model. It performed with approximately 70% of overall accuracy. 63% of the minority classes were correctly identified, which is a significant improvement from 35% we saw in the stratified baseline model performance.
 
 ## Conclusion
 
