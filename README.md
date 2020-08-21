@@ -136,7 +136,7 @@ Random Forest model fit our goal best with high prediction of all classes throug
 | Model | Weightd F1 | Balanced Accuracy | Minority Recall |
 | --- | --- | --- | --- |
 | Baseline | 0.372 | 0.322  | 0.331 |
-| Finaml Model | 0.725 | 0.672  | 0.63 |
+| Final Model | 0.725 | 0.672  | 0.63 |
 
 Our final model nearly doubled in weighted F1 and balanced accuracy score from a stratified baseline model. It performed with approximately 70% of overall accuracy. 63% of the minority classes were correctly identified, which is a significant improvement from 35% we saw in the stratified baseline model performance.
 
