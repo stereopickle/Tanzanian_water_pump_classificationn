@@ -119,14 +119,15 @@ Our stratified dummy predictor yielded balanced accuracy of .336 and the minorit
 
 ### Model Performance
 Here we outline the best performing score of each algorithm.  
-Model | Weightd F1 | Balanced Accuracy | Minority Recall  
-Baseline | 0.444 | 0.336  | 0.08
-Logistic Regression (L1) | 0.68 | 0.695  | 0.71
-Decision Tree | 0.728 | 0.642  | 0.45
-kNN | 0.753 | 0.631  | 0.32
-Random Forest | 0.731 | 0.694  | 0.66
-XGBoost | 0.779 | 0.687  | 0.47
-Voting Classifier | xx |xx |xx
+| Model | Weightd F1 | Balanced Accuracy | Minority Recall |
+| --- | --- | --- | --- |
+| Baseline | 0.444 | 0.336  | 0.08 |
+| Logistic Regression (L1) | 0.68 | 0.695  | 0.71 |
+| Decision Tree | 0.728 | 0.642  | 0.45 |
+| kNN | 0.753 | 0.631  | 0.32 |
+| Random Forest | 0.731 | 0.694  | 0.66 |
+| XGBoost | 0.779 | 0.687  | 0.47 |
+| Voting Classifier | xx |xx |xx |
 
 ### Final Model Performance
 
