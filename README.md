@@ -34,6 +34,8 @@ While Tanzania now has many water points, 60,400 to be exact, the battle is far 
 #### 040_Final_Testing.ipynb
 - Final model performance on test set
 
+#### 05_Visualization.ipynb
+- Additional visualization and context
 
 ## Data Cleaning
 
