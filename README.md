@@ -123,7 +123,6 @@ Here we outline the best performing score of each algorithm.
 | Model | Weightd F1 | Balanced Accuracy | Minority Recall |
 | --- | --- | --- | --- |
 | Baseline | 0.444 | 0.336  | 0.08 |
-| Logistic Regression (L1) | 0.68 | 0.695  | 0.71 |
 | Decision Tree | 0.728 | 0.642  | 0.45 |
 | kNN | 0.753 | 0.631  | 0.32 |
 | Random Forest | 0.731 | 0.694  | 0.66 |
@@ -139,7 +138,7 @@ Random Forest model fit our goal best with high prediction of all classes throug
 | Baseline | 0.372 | 0.322  | 0.331 |
 | Final Model | 0.725 | 0.672  | 0.63 |
 
-Our final model nearly doubled in weighted F1 and balanced accuracy score from a stratified baseline model. It performed with approximately 70% of overall accuracy. 63% of the minority classes were correctly identified, which is a significant improvement from 35% we saw in the stratified baseline model performance.
+Our final model nearly doubled in weighted F1 and balanced accuracy score from a stratified baseline model. It performed with approximately 70% of overall accuracy. 63% of the minority classes were correctly identified, which is a significant improvement from 8% we saw in the stratified baseline model performance.
 
 ## Future Directions
 
