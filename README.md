@@ -37,7 +37,7 @@ While Tanzania now has many water points, 60,400 to be exact, the battle is far 
 #### 050_A_Data_Story.ipynb
 - Additional visualization and context
 
-#### V2 Files are optimized process involving a feature selection.
+#### V2 Files are optimized process involving a feature selection and some added features not yet reviewed below.
 
 
 ## Data Cleaning
