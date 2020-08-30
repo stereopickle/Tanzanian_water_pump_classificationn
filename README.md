@@ -34,6 +34,8 @@ While Tanzania now has many water points, 60,400 to be exact, the battle is far 
 #### 040_Final_Testing.ipynb
 - Final model performance on test set
 
+#### 050_A_Data_Story.ipynb
+- Additional visualization and context
 
 ## Data Cleaning
 
@@ -52,7 +54,7 @@ Large amount of the construction years and GPS height were missing, but because 
 
 ## Target: Water Point Status Group 
 
-Our target variable consists of three classes that are heavily imbalanced as seen above.  
+Our target variable is the status of each water points. It consists of three classes (functional, not functional, needs repair) that are heavily imbalanced as seen above.  
 
 ## Predictors 
 Here we outline a few predictors that were included in our model.  
@@ -63,7 +65,6 @@ Construction year had a significant implication to our data but many were missin
 
 ### Locations
 
- Geo Pandas Mapping
 <img src="./PNG/waterpoint_location.png">
 
 This is a map of water points by condition in Tazania. We can see that some clustering of functionality is visible. As location information seemed important, we expanded upon the current features by engineering with distance and location predictors such as distance to the basin and local government area center. 
@@ -119,17 +120,36 @@ Our stratified dummy predictor yielded balanced accuracy of .336 and the minorit
 
 ### Model Performance
 Here we outline the best performing score of each algorithm.  
-Model | Weightd F1 | Balanced Accuracy | Minority Recall  
-Baseline | 0.444 | 0.336  | 0.08
-Logistic Regression (L1) | 0.68 | 0.695  | 0.71
-Decision Tree | 0.728 | 0.642  | 0.45
-kNN | 0.753 | 0.631  | 0.32
-Random Forest | 0.731 | 0.694  | 0.66
-XGBoost | 0.779 | 0.687  | 0.47
-Voting Classifier | xx |xx |xx
+| Model | Weightd F1 | Balanced Accuracy | Minority Recall |
+| --- | --- | --- | --- |
+| Baseline | 0.444 | 0.336  | 0.08 |
+| Decision Tree | 0.728 | 0.642  | 0.45 |
+| kNN | 0.753 | 0.631  | 0.32 |
+| Random Forest | 0.731 | 0.694  | 0.66 |
+| XGBoost | 0.779 | 0.687  | 0.47 |
+| Voting Classifier | 0.758 | 0.708 | 0.64 |
 
-### Final Model Performance
+XGBoost and KNN models did the best on weighted f1 score, and overall accuracy, but they missed many of the minority class.
+Random Forest model fit our goal best with high prediction of all classes throughout including the minority class, with slight tendency to over-predict the minority class. Voting classifier model also performed well, but we chose random forest model because its sensitivity for minority classes were the highest. 
 
+### Final Model Performance (On test data)
+| Model | Weightd F1 | Balanced Accuracy | Minority Recall |
+| --- | --- | --- | --- |
+| Baseline | 0.372 | 0.322  | 0.331 |
+| Final Model | 0.725 | 0.672  | 0.63 |
+
+Our final model nearly doubled in weighted F1 and balanced accuracy score from a stratified baseline model. It performed with approximately 70% of overall accuracy. 63% of the minority classes were correctly identified, which is a significant improvement from 8% we saw in the stratified baseline model performance.
+
+## Future Directions
+
+Failing pumps are costly and take critical resources away from the locals that depend on them.  
+	- Further research into types and longevity of waterpumps that could replace the heavily failing motor and gravity pumps currently used would be a good start.  
+
+The world bank study showed that village managed waterpoints are 20-40% more likely to fail between years 1 and 20.   
+	- Education and technical training for local communities would will allow those in the communities to maintain waterpoints and better manage water pumps.  
+
+Payment is a large issues especially when the average monthly salary in Tanzania is $50.   
+	- Financial support systems from local government areas or districs in addition to payment arrangements in place is crucial to driving a reliable water system.  
 
 
 ## Conclusion
