@@ -37,6 +37,9 @@ While Tanzania now has many water points, 60,400 to be exact, the battle is far 
 #### 050_A_Data_Story.ipynb
 - Additional visualization and context
 
+#### V2 Files are optimized process involving a feature selection.
+
+
 ## Data Cleaning
 
 We started with 59,400 observations. We cleaned the data by checking duplicates and missing values. Missing values were imputed based on what we knew about the feature, and sometimes the frequency of the input. 
