@@ -37,7 +37,7 @@ While Tanzania now has many water points, 60,400 to be exact, the battle is far 
 #### 050_A_Data_Story.ipynb
 - Additional visualization and context
 
-#### V2 Files are optimized process involving a feature selection and some added features not yet reviewed below.
+#### V2 Files are optimized process involving a feature selection and some added features for Model Evaluation 2.
 
 
 ## Data Cleaning
@@ -96,7 +96,7 @@ scheme_managemen - operator of the waterpoint
 num_private 
 
 
-## Model Evaluation
+## Model Evaluation 1 
 
 ### Evaluation Metrics
 Our target is multi-class with imbalance issue where we have a very few observations of water points that needs repair compared to the ones that are functioning. It was important to us to not miss the non functioning or need for repair cases, as it is directly related to the lives of people using that water points. 
@@ -135,13 +135,35 @@ Here we outline the best performing score of each algorithm.
 XGBoost and KNN models did the best on weighted f1 score, and overall accuracy, but they missed many of the minority class.
 Random Forest model fit our goal best with high prediction of all classes throughout including the minority class, with slight tendency to over-predict the minority class. Voting classifier model also performed well, but we chose random forest model because its sensitivity for minority classes were the highest. 
 
-### Final Model Performance (On test data)
+### Testing Performance
 | Model | Weightd F1 | Balanced Accuracy | Minority Recall |
 | --- | --- | --- | --- |
 | Baseline | 0.372 | 0.322  | 0.331 |
 | Final Model | 0.725 | 0.672  | 0.63 |
 
 Our final model nearly doubled in weighted F1 and balanced accuracy score from a stratified baseline model. It performed with approximately 70% of overall accuracy. 63% of the minority classes were correctly identified, which is a significant improvement from 8% we saw in the stratified baseline model performance.
+
+
+## Model Evaluation 2
+After evaluation of the first set of models, we added a few more distance related breakdowns then selected features using Extra Tree algorithm. We test kNN, Random Forest, and XGBoost. Then did a soft voting across these three models. 
+
+### Model Performance
+Here we outline the best performing score of each algorithm.  
+| Model | Accuracy | Cohen's Kappa |
+| --- | --- | --- | 
+| Baseline | 0.332 | 0.001 |
+| kNN | 0.754 | 0.556 |
+| Random Forest | 0.745 | 0.541 |
+| XGBoost | 0.792 | 0.624 |
+| Voting Classifier | 0.789 | 0.619 |
+
+
+### Testing Performance (XGBoost)
+| Model | Accuracy | 
+| --- | --- |
+| Baseline | 0.334 |
+| Final Model | 0.8 |
+
 
 ## Future Directions
 
@@ -158,12 +180,4 @@ Payment is a large issues especially when the average monthly salary in Tanzania
 ## Conclusion
 
 Successful prediction of water point condition would allow appropriate allocation of resources in maintenance of water points in Tanzania. This will be an important step in building a sustainable infrastructure that will better many lives in Tanzania.
-
-
-
-
-
-
-
-
 
