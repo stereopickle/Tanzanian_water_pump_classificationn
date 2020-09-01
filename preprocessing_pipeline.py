@@ -15,7 +15,9 @@ import numpy as np
 from geopy.geocoders import Nominatim
 from geopy.distance import geodesic
 import dictionaries as di
-
+import string
+from collections import Counter
+import pickle
 
 def preprocessing(X0):
     X = X0.copy()
@@ -25,157 +27,106 @@ def preprocessing(X0):
     X['scheme_management'] = X.scheme_management.fillna('Unknown')
     X['scheme_name'] = X.scheme_name.fillna('None')
     
-    freq_subvil = di.freq_subvil
-    
+    freq_subvil = di.freq_subvil    
     X['temp_subvil'] = [freq_subvil[x] for x in X['region']]
     X['subvillage'] = np.where(X['subvillage'].isnull(), X['temp_subvil'], X['subvillage'])
 
     X['public_meeting'] = X.public_meeting.fillna(True)
-
     X['permit']= X.permit.mask(X.permit.isnull(), 
-      np.random.choice([True, False], size=len(X)))
+                               np.random.choice([True, False], size=len(X)))
     
-    X['permit'] = X.permit.astype('bool')
     
     avg_lat_long = pd.read_pickle('PKL/avg_lat_long.pkl')
     
-    X['latitude'] = np.where(X.longitude < 5, 
-         avg_lat_long['latitude'][X.region], X.latitude)
-    X['longitude'] = np.where(X.longitude < 5, 
-             avg_lat_long['longitude'][X.region], X.longitude)
+    X['latitude'] = np.where(X.longitude < 5,
+                             avg_lat_long['latitude'][X.region], X.latitude)
+    X['longitude'] = np.where(X.longitude < 5,
+                              avg_lat_long['longitude'][X.region], X.longitude)
         
     # change date to year
-    X['date_recorded'] = [int(x[:4]) for x in X.date_recorded]
+    X['year_recorded'] = [int(x[:4]) for x in X.date_recorded]
+    X['month_recorded'] = [int(x[4:6]) for x in X.date_recorded]
     
     # change data types
     X['region_code'] = X['region_code'].astype('object')
     X['district_code'] = X['district_code'].astype('object')
-    
-    # fixing texts
-    text_feats = di.text_feats
-    for c in text_feats:
-        X[c] = [x.lower() for x in X[c]]
+    X['permit'] = X.permit.astype('bool')
 
-    # funders 
-    cond = [X.funder.str.contains('mganga'), 
-        X.funder.str.contains('mwin'), 
-        X.funder.isin(['mwanza', 'mwanga town water authority']),
-        (X.funder.isin(di.roman_catholic)) | X.funder.str.contains('roma'), 
-        X.funder.isin(di.unicef), 
-        X.funder.isin(di.netherland), 
-        (X.funder.str.contains('kkkt')) | (X.funder.str.contains('elc')) | (X.funder.isin(di.lutheran)), 
-        X.funder.str.contains('danid'), 
-        X.funder.str.contains('hes'),
-        X.funder.isin(di.world_bank) | (X.funder.str.contains('world') & X.funder.str.contains('bank')),
-        (X.funder.isin(di.world_vision)) | (X.funder.str.contains('world') & X.funder.str.contains('vision')),
-        (X.funder.str.contains('tasa') | (X.funder.str.contains('tass'))),
-        X.funder.str.contains('germa'), 
-        X.funder.str.contains('distri'), 
-        (X.funder.str.contains('dhv')) | (X.funder == 'dh') , 
-        X.funder.isin(di.private_individual), 
-        X.funder.str.contains('dws'), 
-        X.funder.str.contains('nora'), 
-        X.funder.str.contains('tcrs'), 
-        X.funder.str.contains('heal'), 
-        X.funder.str.contains('dwe'), 
-        X.funder.isin(di.ADB), 
-        (X.funder.str.contains('lga')) | (X.funder.str.contains('loca')),
-        X.funder.str.contains('amre'), 
-        X.funder.str.contains('oxf'), 
-        (X.funder.str.contains('fin')) & (X.funder.str.contains('w')), 
-        (X.funder.str.contains('jap')) | (X.funder.isin(['jica', 'jaica'])),
-        X.funder.str.contains('isf') | (X.funder == 'is'),
-        (X.funder.str.contains('chri')) | (X.funder.str.contains('cris')),
-        X.funder.str.contains('das'),
-        X.funder.str.contains('taca'), 
-        X.funder.str.contains('compas'),
-        X.funder.str.contains('vil'),
-        X.funder.str.contains('conce'),
-        X.funder.str.contains('egy'),
-        X.funder.str.contains('meth'), 
-        X.funder.str.contains('edk'),
-        X.funder.str.contains('finl'),
-        X.funder.str.contains('irev'),
-        X.funder.isin(di.baptist),
-        (X.funder.str.contains('chur'))| X.funder.str.contains('miss'),
-        X.funder.isin(di.unknown),
-        X.funder.str.contains('schoo'),
-        (X.funder.str.contains('rws')) | (X.funder.str.contains('rural') & X.funder.str.contains('wat')),
-        X.funder.str.contains('ded'),
-        X.funder.str.contains('oik'),
-        (X.funder.str.contains('kil') & X.funder.str.contains('wat')), 
-        X.funder.str.contains('comm'), 
-        X.funder.str.contains('farm'),
-        X.funder.str.contains('apm'),
-        X.funder.str.contains('africar'), 
-        X.funder.isin(di.swedish),
-        X.funder.str.contains('wfp'), 
-        (X.funder.str.contains('wat') & X.funder.str.contains('aid')), 
-        X.funder.str.contains('drdp'), 
-        (X.funder.str.contains('wat') & X.funder.str.contains('use')), 
-        X.funder.str.contains('muni')
-       ]
-    vals = ['mganga', 'mwinjuma_mzee', 'mwanza', 'roman_catholic', 'unicef', 
-            'netherland', 'kkkt', 'danida', 'hesawa', 'world_bank', 
-            'world_vision', 'tasaf', 'germany', 'district council', 'dhv', 
-            'individual', 'dwsp', 'norad', 'tcrs','ministry_of_health', 'dwe', 
-            'adb', 'lga', 'amref', 'oxfam', 'finwater', 'japan', 'isf', 
-            'christian','dasp', 'tacare', 'compassion', 'village', 'concern',
-            'egype', 'methodist', 'friedkin', 'finland','irevea', 'baptist',
-            'other_church', 'unknown', 'school','rwssp', 'ded', 'oikos', 
-            'killi_water', 'community', 'farm_afr', 'apm', 'africare','sweden', 
-            'wfp', 'wateraid', 'drdp', 'wateruser', 'municipal_council']
-    
-    X.funder = np.select(cond, vals, X.funder)
-    
-    # installers
-
-
-    for k, v in di.typos.items():
-        X.installer = X.installer.apply(lambda x: x.replace(k, v))
-    for k, v in di.str_isin.items():
-        X.installer = np.where(X.installer.isin(v), k, X.installer)
-    for k, v in di.str_startswith.items():
-        X.installer = np.where(X.installer.str.startswith(k), v, X.installer)
-    for k, v in di.str_contains.items():
-        X.installer = np.where(X.installer.str.contains(k), v, X.installer)
-    for k, v in di.str_endswith.items():
-        X.installer = np.where(X.installer.str.endswith(k), v, X.installer)
-        
-
-
-    # limiting to values with at least 100 observations
-    other_funders = [x for x in set(X.funder) if len(X[X.funder == x]) < 50]
-    X['funder'] = np.where(X.funder.isin(other_funders), 'others', X.funder)
-    
-    other_installer = [x for x in set(X.installer) if len(X[X.installer == x]) < 100]
-    X['installer'] = np.where(X.installer.isin(other_installer), 'others', X.installer)
-
-    # Feature engineering
+    # adding features
+    X['zero_tsh'] = np.where(X.amount_tsh == 0, 1, 0)
+    X['extreme_tsh'] = np.where(X.amount_tsh > 3000, 1, 0)
     X['negative_gps_height'] = np.where(X.gps_height < 0, 1, 0)
     X['zero_gps_height'] = np.where(X.gps_height == 0, 1, 0)
+    X['zero_private'] = np.where(X.num_private == 0, 1, 0)
+    X['zero_population'] = np.where(X.population == 0, 1, 0)
+    X['extreme_population'] = np.where(X.population > 3000, 1, 0)
     
     cond = [X.construction_year > 2005, 
-       X.construction_year > 2000, 
-       X.construction_year > 1990, 
-       X.construction_year > 1980, 
-       X.construction_year > 1970]
+            X.construction_year > 2000, 
+            X.construction_year > 1990, 
+            X.construction_year > 1980, 
+            X.construction_year > 1970]
     vals = ['after05', '00s', '90s', '80s', '70s']
 
-    X['built_recent'] = np.select(cond, vals, 'others')
-    
+    X['year_built'] = np.select(cond, vals, 'others')
+
     # new column: n_wells_village
-    subvil_counts = X.subvillage.value_counts()
-    cond = [subvil_counts[X.subvillage] > 300, 
-            subvil_counts[X.subvillage] > 100,
-            subvil_counts[X.subvillage] > 50, subvil_counts[X.subvillage] > 10]
-    vals = ['more_than_300', 'more_than_100', 'more_than50', 'more_than_10']
-    X['n_wells_village'] = np.select(cond, vals, 'less_than_10')
+    with open('PKL/subvil_counts.pkl', 'rb') as fp:
+        subvil_counts = pickle.load(fp)
     
-    # turn less than 100 wells village into 'others'
-    other_subvill =  [x for x in set(X.subvillage) if len(X[X.subvillage == x]) < 100]
-    X['subvillage'] = np.where(X.subvillage.isin(other_subvill), 'others', X.subvillage)
+    for pnt in X.subvillage:
+        try: subvil_counts[pnt] += 1
+        except: subvil_counts[pnt] = 1
+        
+    X['n_wells_village'] = [subvil_counts[x] for x in X.subvillage]
     
+    
+    # turn all texts into lower case
+    for c in di.text_feats:
+        X[c] = [x.lower() for x in X[c]]
+    
+    
+    # make categories
+    categories = list(X.select_dtypes('object').columns)
+    X[categories] = X[categories].astype('category')
+    
+    # Fix funder/installer texts
+    exclist = string.punctuation + string.digits
+    # remove punctuations and digits
+    
+    table_ = str.maketrans(exclist, ' '*len(exclist))
+    X.funder = [' '.join(x.translate(table_).split()) for x in X.funder]
+    X.installer = [' '.join(x.translate(table_).split()) for x in X.installer]
+    
+    # first fix the ones we know
+    str_isin = di.str_isin
+    
+    for k, v in str_isin.items():
+        X.funder = np.where(X.funder.isin(v), k, X.funder)
+        
+    str_includes = {'villages': 'vill', 'community': 'comm'}
+    
+    for k, v in str_includes.items():
+        X.funder = np.where(v in X.funder, k, X.funder)
+    
+    for k, v in str_isin.items():
+        X.installer = np.where(X.installer.isin(v), k, X.installer)
+        
+    for k, v in str_includes.items():
+        X.installer = np.where(v in X.installer, k, X.installer)
+        
+    with open('PKL/funders.txt', 'rb') as filepath:
+        funders = pickle.load(filepath)
+    with open('PKL/installerss.txt', 'rb') as filepath:
+        installers = pickle.load(filepath)
+    
+    X.installer = np.where(X.installer.isin(installers), 
+                           X.installer, 'others')
+    X.funder = np.where(X.funder.isin(funders), 
+                           X.funder, 'others')   
+    
+
+
     def get_lat_long(location):
         ''' helper: return a tuple of long, lat '''
         geolocator = Nominatim(user_agent = "Tanzwater")
@@ -249,29 +200,35 @@ def preprocessing(X0):
     X['urban_lga'] = X.ward.str.contains('urban')
     X['rural_lga'] = X.ward.str.contains('rural')
     
-    # turn less than 100 wells into 'others'
-    other_lga =  [x for x in set(X.lga) if len(X[X.lga == x]) < 100]
-    X['lga'] = np.where(X.lga.isin(other_lga), 'others', X.lga)    
+    # turn ones without info as others
     
+    with open('PKL/lgas.pkl', 'rb') as fp:
+        lga_list = pickle.load(fp)
+   
+    X['lga'] = np.where(X.lga.isin(lga_list), X.lga, 'others')    
+
     # separate out urban and rural wards
     X['urban_wards'] = X.ward.str.contains('urban')
     X['rural_wards'] = X.ward.str.contains('rural')   
     
-    
+    with open('PKL/extraction_type_c.pkl', 'rb') as fp:
+        extraction_type_list = pickle.load(fp)
+        
     # add the extraction type class
-    chosen =  [x for x in set(X.extraction_type) if len(X[X.extraction_type == x]) > 100]
-    X['extraction_type_c'] = np.where(X.extraction_type.isin(chosen), X.extraction_type, X.extraction_type_group)
+    X['extraction_type_c'] = np.where(X.extraction_type.isin(extraction_type_list), X.extraction_type, X.extraction_type_group)
     
     # final columns
-    cols = ['amount_tsh', 'date_recorded', 'funder', 'gps_height', 'installer',
-       'longitude', 'latitude', 'num_private', 'basin', 'subvillage', 'region',
-       'district_code', 'lga', 'population', 'public_meeting',
-       'scheme_management', 'permit', 'construction_year', 'management',
-       'payment_type', 'water_quality', 'quantity', 'source',
-       'waterpoint_type', 'negative_gps_height', 'zero_gps_height',
-       'built_recent', 'n_wells_village', 'basin_lat', 'basin_long',
-       'dist_to_basin', 'lga_lat', 'lga_long', 'dist_to_lga', 'urban_lga',
-       'rural_lga', 'urban_wards', 'rural_wards', 'extraction_type_c']
+    cols = ['amount_tsh', 'funder', 'gps_height', 'installer', 'longitude',
+       'latitude', 'num_private', 'basin', 'region', 'district_code', 'lga',
+       'population', 'public_meeting', 'scheme_management', 'permit',
+       'construction_year', 'management', 'payment_type', 'water_quality',
+       'quantity', 'source', 'waterpoint_type',
+       'year_recorded', 'month_recorded', 'zero_tsh', 'extreme_tsh',
+       'negative_gps_height', 'zero_gps_height', 'zero_private', 'year_built',
+       'zero_population', 'extreme_population', 'n_wells_village', 'basin_lat',
+       'basin_long', 'dist_to_basin', 'lga_lat', 'lga_long', 'dist_to_lga',
+       'urban_lga', 'rural_lga', 'urban_wards', 'rural_wards',
+       'extraction_type_c']
     
     return X[cols]
     
