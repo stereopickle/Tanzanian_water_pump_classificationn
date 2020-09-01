@@ -4,7 +4,7 @@
 Created on Wed Aug 19 13:59:04 2020
 @author: Eunjoo
 
-This file includes all the lists and dictionaries that are 
+This file includes all the lists and dictionaries that are
 referred in the preprocessing
 """
 
@@ -29,104 +29,56 @@ freq_subvil = {'Arusha': 'Madukani',
              'Singida': 'Madukani',
              'Tabora': 'Majengo',
              'Tanga': 'Sokoni'}
-text_feats = ['funder', 'installer', 'wpt_name', 'basin', 'subvillage', 
-              'region', 'lga', 'ward', 'scheme_management', 'scheme_name', 
-              'extraction_type', 'extraction_type_group', 
-              'extraction_type_class', 'management', 'management_group', 
-              'payment', 'payment_type', 'water_quality', 'quality_group', 
-              'quantity', 'quantity_group', 'source', 'source_type',
-              'source_class', 'waterpoint_type', 'waterpoint_type_group']
+
+text_feats = ['funder', 'installer', 'wpt_name', 'basin',
+              'subvillage', 'region', 'lga', 'ward',
+              'scheme_management', 'scheme_name', 'extraction_type',
+              'extraction_type_group', 'extraction_type_class',
+              'management','management_group', 'payment', 'payment_type',
+              'water_quality','quality_group', 'quantity',
+              'quantity_group', 'source', 'source_type','source_class',
+              'waterpoint_type', 'waterpoint_type_group']
 
 
 swedish = ['swedish', 'sweeden', 'sweden', 'people of sweden']
-roman_catholic = ['rc/mission', 'rc', 'roman church', 'rc mission', 'rc ch', 
-                  'hw/rc', 'cg/rc', 'rc missionary', 
-                  'world vision/rc church', 'rc msufi', 'cefa/rcchurch', 
-                  'rcchurch/cefa', 'rc missi', 'rc church/centr', 'rc mofu', 
-                  'rc cathoric', 'rc njoro', 'roman cathoric church', 
-                  'rc mi', 'rc/dwe', 'rc church', 'rc churc', 'r.c', 
-                  'rc .church', 'rc c', 'rc church brother',
+roman_catholic = ['roman catholic', 'roman cathoric', 'rc/mission', 'rc',
+                  'roman church', 'rc mission', 'rc ch', 'hw/rc', 'cg/rc',
+                  'rc missionary', 'world vision/rc church', 'rc msufi',
+                  'cefa/rcchurch', 'rcchurch/cefa', 'rc missi',
+                  'rc church/centr', 'rc mofu', 'rc cathoric', 'rc njoro',
+                  'roman cathoric church', 'rc mi',
+                  'rc/dwe', 'rc church', 'rc churc', 'r.c', 'rc .church',
+                  'rc c', 'rc church brother',
                   'rc church/cefa', 'rc church/central gover', 'rc mis']
 unicef = ['unicrf','uniseg','unicef/cspd','unicet','uniceg','unicef/central', 
-          'unicef', 'unicef/ csp', 'unicef/african muslim agency', 
-          'unice','unice/ cspd']
-netherland = ['nerthlands', 'netherland', 'nethalan', 'holland', 
-              'netherlands', 'natherland', 'holand']
+          'unicef', 'unicef/ csp',
+          'unicef/african muslim agency', 'unice','unice/ cspd']
+netherland = ['nerthlands', 'netherland', 'nethalan', 'holland', 'netherlands', 
+              'natherland', 'holand']
 lutheran = ['lutheran church', 'luthe', 'lutheran']
-world_bank = ['world bank', 'world bank/government', 'bank', 'w.b', 'wo', 
-              'word', 'word bank', 'world banks', 'world nk', 'would bank']
-world_vision = ['wvt', 'wvc', 'world visiin', 'world vission', 
-                'government /world vision', 'world vision', 
-                'world vision/ kkkt', 'worldvision', 'world vision/adra', 
-                'word divisio', 'world division', ]
+world_bank = ['world bank', 'world bank/government', 'bank', 'w.b', 'wo', 'word', 
+              'word bank',
+             'world banks', 'world nk', 'would bank']
+world_vision = ['wvt', 'wvc', 'world visiin', 'world vission',
+                'government /world vision', 'world vision', 'world vision/ kkkt',
+                'worldvision', 'world vision/adra', 'word divisio', 
+                'world division']
 private_individual = ['private individual', 'private', 'mwingereza', 
                       "rashid seng'ombe", 'doctor mwambi']
 ADB = ['afdp', 'adb', 'lga and adb', 'african development bank', 
        'african development foundation']
-baptist = ['babtest', 'babtist', 'buptist', 'batist church', 
-           'baptist church']
-unknown = ['0', 'none', 'unknown', 'o', '-', '_', 'not known', 
-           'not kno', 'unknown installer']
+baptist = ['babtest', 'babtist', 'buptist', 'batist church', 'baptist church']
+unknown = ['none', 'unknown', '', 'not known', 'not kno', 'unknown installer']
+fin_water = ['fini water', 'finw', 'fin water','finn water', 'finwater', 
+             'finwate']
 
-typos = {'babtest': 'baptist', 'batist': 'baptist', 'batist': 'baptist', 'belgiam': 'belgium', 
-        'cathoric': 'catholic', 'cebtral': 'central', 'cetral': 'central', 'christan': 'christian', 
-        'comunity': 'community', 'compasion': 'compassion', 'cristan': 'christian', 'danda': 'danida', 
-         'daniad': 'danida', 'danids': 'danida', 'denish': 'danish', 'embasy': 'embassy', 'goldstar': 'gold star',
-         'greineker': 'greinaker', 'grobal': 'global', 'gurumeti': 'grumeti', 'holand': 'netherland', 
-         'holland': 'netherland','jeica': 'jica', 'jaica': 'jica', 'jicks': 'jica', 'jika': 'jica', 'jiks': 'jica',
-         'jsica': 'jica', 'kiliflora': 'killflora', 'kili': 'killi', 'kill': 'killi', 'kuweit': 'kuwait', 
-         'lolmoloki': 'lomoloki', 'muslin': 'muslim', 'agrican': 'african', 'cebtral': 'central', 'cental': 'central',
-         'cetral': 'central', 'insititutiona': 'institutional', 'morrov': 'morov', 'nampapanga': 'nampopanga', 'nanra': 'nandra',
-         'nasan': 'nassan', 'tanload': 'tanroad', 
-        }
-str_isin = {'swedish': swedish, 'roman_catholic': roman_catholic, 'unicef': unicef, 'netherland': netherland, 
-           'lutheran': lutheran, 'world_bank': world_bank, 'world_vision': world_vision, 
-           'private': private_individual, 'adb': ADB, 'baptist': baptist, 'unknown': unknown}
-str_startswith = {'abd': 'abd', 'adp': 'adp', 'africa m': 'african_muslin', 'african m': 'african_muslim', 
-               'africaone': 'africaone', 'aic': 'aic', 'amp': 'amp', 'ang': 'anglican', 'arab': 'arab', 
-                 'ardhi': 'ardhi', 'atlas': 'atlas', 'babu': 'babu', 'bingo': 'bingo', 'boni': 'bonite_bottles',
-                 'brit': 'britain', 'building': 'building_works', 'calt': 'caltas', 'care': 'care', 
-                 'carta': 'cartas', 'ccp': 'ccp', 'centr': 'central_government', 'cg': 'central_government',
-                 'chacha': 'chacha', 'chin': 'china', 'christ': 'christian', 'chur': 'church', 'cip': 'cipro', 
-                 'cjej': 'cjejow', 'conce': 'concern', 'compa': 'company', 
-                 'cons': 'consulting_engineer', 'cosmo': 'cosmos', 'counc': 'council', 'dads': 'dads', 
-                 'danid': 'danida', 'dawa': 'dawasa', 'das': 'dasp', 'dbs': 'dbsp', 'ddca': 'ddca', 
-                 'desk': 'desk_a_c', 'dh': 'dhv', 'dm': 'dmdd', 'dr': 'dr_matobola', 
-                 'dsp': 'dsp', 'dw': 'dwe', 'efa': 'efarm', 'elc': 'kkkt', 'emanda': 'emanda', 
-                 'eny': 'enyuati','fram': 'farm_africa', 'fin ': 'fin_water', 'finland': 'gov_finland', 
-                  'fin': 'finwater' , 'fp': 'fpct', 'gachu': 'gachuma', 'george': 'george_mtoto', 
-                 'german': 'german', 'global':'global_resource', 'gove': 'government', 'grume': 'grumeti',
-                 'gwas': 'gwasco', 'hal': 'halmashauri', 'handeni': 'handeni', 'hanja': 'hanja', 'hapa': 'hapa', 
-                 'hemed': 'hemed_abdallah', 'hes': 'hesawa', 'hosp': 'hospital', 'hotel': 'hotel_lodge', 
-                 'howard': 'howard_humfreys', 'humfrey': 'howard_humfreys', 'icf': 'icf', 'idara': 'idara', 
-                 'indiv': 'private', 'ind': 'india', 'insti': 'institutional', 'isf': 'isf', 'islam': 'islamic', 
-                 'ital': 'italy', 'jica': 'jica', 'jandu': 'jandu_plumber','jeshi': 'jeshi','juin': 'juin', 
-                 'jum': 'juma', 'kaem': 'kaemp', 'kalit': 'kalitasi', 'kanisa': 'kanisa', 'karumba': 'karumba_building', 
-                 'kibo': 'kibo', 'killflora': 'killflora', 'killi': 'killiwater', 'kk': 'kkkt', 'kyasha': 'kyasha',
-                 'lawate': 'lawate_fuka', 'lind': 'lindi', 'lion': 'lions', 'livi': 'living_water', 'local': 'locals', 
-                 'losa': 'losa-kia', 'luthe': 'lutheran', 'mack': 'macdonald', 'maga': 'magadini', 'maji': 'maji', 
-                 'makon': 'makonde', 'masjid': 'masjid', 'maswi': 'maswi','missi': 'missionary', 'oik': 'oikos',
-                 'mkon': 'mkongo', 'mombo': 'mombo', 'active tank': 'active_tank', 'besad': 'besada', 'mdrd': 'mdrdp',
-                  'mile': 'millennium', 'mlaki': 'mlaki', 'morovi' : 'morovian', 'msiki': 'msikitini', 'muslim': 'muslims',
-                  'mwaki': 'mwaki', 'mwalimu': 'mwalimu', 'mwita': 'mwita', 'naishu': 'naishu', 'nandra': 'nandra',
-                  'ngo': 'ngo', 'nora': 'norad', 'noshad': 'noshad', 'nyiak': 'nyiakaliangani', 'pente': 'pentecost', 
-                  'peter':'individual', 'pet': 'pet_corp', 'plan': 'plan', 'pnr': 'pnr', 'priv': 'private', 
-                  'qu' : 'quick_win', 'qw': 'quick_win', 'regi': 'regional_water', 'regwa': 'regwa', 
-                  'resolute': 'resolute', 'rhobi': 'rhobi', 'roma': 'roman_catholic', 'rotar': 'rotary_club',
-                  'rude': 'rudep', 'rural': 'rural_water_supply', 'rw': 'rwe', 'samwel': 'samweli', 'save': 'save_the_rain', 
-                  'saxon': 'saxon', 'schoo': 'school', 'sda': 'sda', 'secon': 'secondary_school', 
-                  'soli': 'solidame', 'tanap': 'tanapa', 'tanz': 'tanzania', 'tasa': 'tasaf', 'tass': 'tassaf', 
-                  'tcrs': 'tcrs', 'tlc': 'tlc', 'total': 'total_landcare', 'toto': 'total_landcare', 'tpp': 'tpp', 
-                  'tscr': 'tcrs', 'tsrc': 'tcrs', 'tukwa': 'tukwale', 'u.s.a': 'usa', 'ubalozi': 'ubalozi_wa_marekani', 
-                  'umoja': 'umoja', 'us embassy': 'usa', 'usa embassy': 'usa', 'vicf': 'vicf', 'victoria': 'victoria', 
-                  'vifa': 'vifaf', 'vitecos': 'vitecos', 'wamis': 'missionary', 'wasso': 'wasso', 'water use': 'water_user_group', 
-                  'water': 'wateraid', 'wed': 'wedeco', 'winam': 'winam', 'winnin': 'winnin', 'wizara': 'wizara', 
-                  'ww': 'wwf', 'yasini':'yasini', 'zao': 'zao_water'
-                 }
-str_contains = {'adr':'adra', 'amre':'amre', 'man dr': 'aquaman_drilling', 'baptist': 'baptist', 
-               'japan': 'japan', 'munic': 'municipal', 'commu': 'community', 'vil': 'village', 
-               'lwi': 'lwi','distri': 'district', 'of water': 'ministry of water',  'egypt': 'egypt',}
-str_endswith = {'isan': 'artisan'}
+str_isin = {'swedish': swedish, 'roman_catholic': roman_catholic, 
+            'unicef': unicef, 'netherland': netherland, 
+               'lutheran': lutheran, 'world_bank': world_bank, 
+               'world_vision': world_vision, 
+               'private': private_individual, 'adb': ADB, 'baptist': baptist, 
+               'unknown': unknown, 
+               'finwater': fin_water}
 
 allbasins = {'lake rukwa': (32.15531150377274, -7.965086100000001),
              'lake tanganyika': (29.46966321973214, -6.0789144),
@@ -137,7 +89,7 @@ allbasins = {'lake rukwa': (32.15531150377274, -7.965086100000001),
              'lake victoria': (32.86849590594538, -1.265906),
              'internal': (35, -4.5),
              'rufiji': (38.643934604769875, -7.95910735)}
-    
+
 
 alllgas = {'njombe': (35.03693166937911, -9.2279601),
              'hai': (37.134517, -3.325798),
@@ -264,4 +216,4 @@ alllgas = {'njombe': (35.03693166937911, -9.2279601),
              'mbinga': (34.92320147460117, -10.8685562),
              'kongwa': (36.4072433, -6.1925662),
              'kiteto': (36.570512752918944, -5.1858450000000005)}
-    
+
