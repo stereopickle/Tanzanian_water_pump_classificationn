@@ -1,4 +1,4 @@
-
+ARCHIVE/
 .DS_Store
 .ipynb_checkpoints/010.Data_Cleaning-checkpoint.ipynb
 DATA/TEST_VALUES.csv
@@ -55,3 +55,4 @@ MAP/._tza_admbnda_adm3_20181019.shp
 .ipynb_checkpoints/041.Final_Testing_V2-checkpoint.ipynb
 PKL/funders.txt
 PKL/installerss.txt
+ARCHIVE/.ipynb_checkpoints/020.Exploratory_Data_Analysis-checkpoint.ipynb
